@@ -1,0 +1,137 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+{% comment %}- custom style -{% endcomment %}
+<style>
+
+</style>
+{% comment %}- END custom style -{% endcomment %}
+
+    <!-- Page Add Section Begin -->
+    <section class="page-add">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="page-breadcrumb">
+                        <h2>{{title}}<span>.</span></h2>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <img src="{% static 'img/add.jpg' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Page Add Section End -->
+
+    <!-- Categories Page Section Begin -->
+    <section class="categories-page spad">
+        <div class="container">
+            <div class="categories-controls">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="categories-filter">
+                            <div class="cf-left">
+                                
+
+                            {% comment %}- filter section -{% endcomment %}
+                            <ul class="product-controls list-unstyled">
+                                <div class="container mb-3">
+                                    <h6 class=" text-secondary">
+                                        Filter Products <i class="fa-solid fa-filter"></i>
+                                    </h6>
+                                </div>
+                                <form method="POST" class="container d-flex gap-3 flex-row align-items-center justify-justify-content-between">
+                                    {% csrf_token %}
+                                    <li>
+                                        <input class="btn btn-secondary"
+                                        name="all" type="submit" value="All">
+                                    </li>
+                                    <li>
+                                        <input class="btn btn-secondary"
+                                        name="jeans" type="submit" value="Jeans">
+                                    </li>
+                                    <li>
+                                        <input class="btn btn-secondary"
+                                        name="jacket" type="submit" value="Jacket">
+                                    </li>
+                                    <li>
+                                        <input class="btn btn-secondary"
+                                        name="tshirt" type="submit" value="T-Shirt">
+                                    </li>
+                                </form>
+                            {% comment %}- END filter section -{% endcomment %}
+
+
+                            </div>
+                            <div class="cf-right mt-3">
+                                <span class="fw-bold">
+                                    <span class="badge rounded-pill text-bg-success mr-0">
+                                        {{products_count}}
+                                    </span>
+                                     Products 
+                                    <i class="fa-solid fa-star"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                {% comment %}- show products -{% endcomment %}
+                {% for product in all_produts %}
+                <div class="col-lg-3 col-md-6 pb-2 custom-card">
+                    <div class="single-product-item mb-2 mt-3">
+                        <figure>
+                            <img src="{{product.image.url}}" style="height: 300px;">
+                            {% for tag in product.tags.all %}
+                            <div class="p-status bg-warning">{{tag.name}}</div>
+                            {% endfor %}
+                            <div class="hover-icon">
+                                <a href="{{product.image.url}}" class="pop-up">
+                                    <img src="{% static 'img/icons/zoom-plus.png' %}">
+                                </a>
+                            </div>
+                        </figure>
+                        <div class="product-text pb-2">
+                            <div class="container pt-0 mt-0">
+                                <div class="d-flex justify-content-between">
+                                    <h6>{{product.name}}</h6>
+                                    <a href="{% url 'product_details_page' product.id %}">
+                                        <h6><i class="fa-solid fa-cart-shopping"></i> Add</h6>
+                                    </a>
+                                </div>
+                                <p>{{product.price}}$</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% comment %}- END show products -{% endcomment %}
+            </div>
+
+
+            <div class="more-product">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <form method="POST" action="">
+                            {% csrf_token %}
+                            {% if not end %}
+                            <input type="submit" value="Show more" class="primary-btn bg-transparent">
+                            {% else %}
+                            <p>{{message}} <i class="fa-solid fa-hourglass-end"></i></p>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Categories Page Section End -->
+{% endblock content %}

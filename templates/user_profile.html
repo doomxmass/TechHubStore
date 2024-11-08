@@ -1,0 +1,77 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% comment %}- my custom style -{% endcomment %}
+<link rel="stylesheet" href="{% static 'css/django_custom_style/user_profile_style.css' %}" type="text/css">
+
+
+<div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+      
+    {% comment %}- template image section -{% endcomment %}
+    <div class="container-s my-temp">
+        <div class="custom-loader">
+            <span>{{user.username}}</span>
+            <span>{{user.username}}</span>
+        </div>
+        <img src="{% static 'img/my_temp/profile_template.png' %}" alt="">
+    </div>
+    {% comment %}- END template image section -{% endcomment %}
+
+
+
+    {% comment %}- profile cart -{% endcomment %}
+    <div class="card p-4 bg-transparent">
+        <div class="image d-flex flex-column justify-content-center align-items-center">
+            <button class="btn custom-btn">
+                <img src="{{user.profile.image.url}}" height="100" width="100" class="user-img"/>
+            </button>
+            <span class="name mt-3">{{user.username}}</span>
+            <span class="idd">{{user.email}}</span>
+            <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+                <span class="idd1">{{user.profile.phone}}</span>
+                <span><i class="fa-solid fa-phone"></i></span>
+            </div>
+            <div class="d-flex flex-row justify-content-center align-items-center mt-3">
+                <span class="number" style="color: green;">{{cart_items_count}}
+                    <span class="follow"> PRODUCTS ADDED TO CART</span>
+                </span>
+            </div>
+            <div class="d-flex mt-2">
+                <a class="btn1 bg-secondary align-items-center d-flex justify-content-center"
+                href="{% url 'cart_items_page' %}">
+                    Show
+                </a>
+            </div>
+            <div class="text mt-3">
+                <span>{{user.profile.description}}</span>
+            </div>
+            <div class="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center">
+                <span>
+                    <i class="fa fa-twitter"></i>
+                </span>
+                <span>
+                    <i class="fa fa-facebook-f"></i>
+                </span>
+                <span>
+                    <i class="fa fa-instagram"></i>
+                </span>
+                <span>
+                    <i class="fa fa-linkedin"></i>
+                </span>
+            </div>
+            <div class="px-2 rounded mt-4 date">
+                <span class="join">TechHub ,2024</span>
+            </div>
+            <div class="container d-flex flex-column text-center m-4">
+                <a href="{% url 'profile_edit_page' user.id %}" class="primary-btn custom-profile-btn">
+                    Edit Profile
+                </a>
+                <a href="{% url 'password_reset' %}" class="mt-3">Reset Password</a>
+            </div>
+        </div>
+    </div>
+    {% comment %}- END profile cart -{% endcomment %}
+</div>
+{% endblock %}

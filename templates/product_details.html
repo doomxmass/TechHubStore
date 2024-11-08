@@ -1,0 +1,170 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+{% comment %}- custom style -{% endcomment %}
+<style>
+
+    .custom-btn{
+        background-color: transparent;
+    }
+    .custom-msg{
+        background: linear-gradient(to right, rgb(120, 212, 143), rgb(46, 161, 75));
+        text-align: center;
+        padding: 10px 0;
+        color: white;
+    }
+    .custom-msg-icon{
+        color: rgb(22, 83, 37);
+    }
+
+</style>
+{% comment %}- END custom style -{% endcomment %}
+
+
+    <!-- Page Add Section Begin -->
+    <section class="page-add">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="page-breadcrumb">
+                        <h2>
+                            <i class="fa-solid fa-layer-group"></i>
+                            {{product.category}}<span>.</span>
+                        </h2>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <img src="{% static 'img/add.jpg' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Page Add Section End -->
+                        
+    {% comment %}- message -{% endcomment %}
+    {% if messages %}
+    {% for message in messages %}
+        <div class="mt-3 mb-4 custom-msg">
+            {{ message }}
+            <i class="fa-solid fa-circle-check custom-msg-icon"></i>
+        </div>
+    {% endfor %}
+    {% endif %}
+    {% comment %}- END message -{% endcomment %}
+
+    <!-- Product Page Section Beign -->
+    <section class="product-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="product-slider owl-carousel">
+                        <div class="product-img">
+                            <figure>
+                                <img src="{{product.image.url}}" alt="">
+                                {% for tag in product.tags.all %}
+                                <div class="p-status bg-warning">{{tag.name}}</div>
+                                {% endfor %}
+                            </figure>
+                        </div>
+                        <div class="product-img">
+                            <figure>
+                                <img src="{{product.image.url}}" alt="">
+                                {% for tag in product.tags.all %}
+                                <div class="p-status bg-warning">{{tag.name}}</div>
+                                {% endfor %}
+                            </figure>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-lg-6">
+                    <div class="product-content">
+                        <h2>{{product.name}}</h2>
+                        <div class="pc-meta">
+                            <h5>{{product.price}}$</h5>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                        <p>{{product.description}}</p>
+                        <ul class="tags">
+                            <li><span>Category :</span>{{product.category}}</li>
+                            <li>
+                                <span>Tags :</span>
+                                {% for tag in product.tags.all %}
+                                #{{tag.name}}
+                                {% endfor %}
+                            </li>
+                        </ul>
+                        {% comment %}- add to cart -{% endcomment %}
+                        <form method="POST" action="{% url 'add_to_cart' product.id %}">
+                            {% csrf_token %}
+                            <div class="product-quantity">
+                                <div class="pro-qty">
+                                    <input type="text" name="quantity" value="1">
+                                </div>
+                            </div>
+                            <input class="primary-btn pc-btn custom-btn" type="submit" value="ADD TO CART">
+                            {% comment %}- END add to cart -{% endcomment %}
+                        </form>  
+
+                        <ul class="p-info">
+                            <li>Product Information</li>
+                            <li>Reviews</li>
+                            <li>Product Care</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Product Page Section End -->
+
+    <!-- Related Product Section Begin -->
+    <section class="related-product spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-title">
+                        <h2>Related Products</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+
+                {% comment %}- related products section -{% endcomment %}
+                {% for item in related_products %}
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-product-item">
+                        <figure>
+                            <a href="{% url 'product_details_page' item.id %}">
+                                <img src="{{item.image.url}}" style="height: 300px;">
+                            </a>
+                            {% for tag in item.tags.all %}
+                            <div class="p-status bg-warning">{{tag.name}}</div>
+                            {% endfor %}
+                        </figure>
+                        <div class="product-text">
+                            <h6>{{item.name}}</h6>
+                            <p>{{item.price}}$</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% comment %}- END related products section  -{% endcomment %}
+
+
+            </div>
+        </div>
+    </section>
+    <!-- Related Product Section End -->
+
+{% endblock content %}

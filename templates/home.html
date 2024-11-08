@@ -1,0 +1,289 @@
+{% extends 'base/base.html' %}
+ {% load static %}
+{% block content %}
+
+    {% comment %}- custom stye -{% endcomment %}
+    <style>
+        .custom-filters{
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        .custom-filters:hover{
+            transition: .3s;
+            color: rgb(78, 145, 95);
+        }
+    </style>
+    {% comment %}- END custom stye -{% endcomment %}
+
+
+    <!-- Header Info Begin -->
+    {% comment %}- if admin add message show it -{% endcomment %}
+    {% for order in home_messages %}
+    {% if order.show %}
+    <div class="header-info">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="header-item">
+                        <img src="{% static 'img/icons/delivery.png' %}" alt="">
+                        <p>{{order.left_message}}</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-left text-lg-center">
+                    <div class="header-item">
+                        <img src="{% static 'img/icons/voucher.png' %}" alt="">
+                        <p>{{order.middle_message}}</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-left text-xl-right">
+                    <div class="header-item">
+                    <img src="{% static 'img/icons/sales.png' %}" alt="">
+                    <p>{{order.right_message}}</p>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% comment %}- END if admin add message show it -{% endcomment %}
+    <!-- Header Info End -->
+    <!-- Header End -->
+
+    <!-- Hero Slider Begin -->
+    <section class="hero-slider">
+        <div class="hero-items owl-carousel">
+            <div class="single-slider-item set-bg" data-setbg="{% static 'img/slider-1.jpg' %}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1>Store</h1>
+                            <h2 style="color: grey;font-weight: bold;">TechHub.</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="single-slider-item set-bg" data-setbg="{% static 'img/slider-2.jpg' %}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1>Style</h1>
+                            <h2 style="color: grey;font-weight: bold;">Shop.</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="single-slider-item set-bg" data-setbg="{% static 'img/slider-3.jpg' %}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1>New</h1>
+                            <h2 style="color: grey;font-weight: bold;">Collection.</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="single-slider-item set-bg" data-setbg="{% static 'img/slider-4.jpg' %}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1>Uniq</h1>
+                            <h2 style="color: grey;font-weight: bold;">Canvas.</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="single-slider-item set-bg" data-setbg="{% static 'img/slider-5.jpg' %}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1>2024</h1>
+                            <h2 style="color: grey;font-weight: bold;">Fashion.</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Slider End -->
+
+    <!-- Features Section Begin -->
+    <section class="features-section spad">
+        <div class="features-ads">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="single-features-ads first mt-0">
+                            <img src="{% static 'img/icons/f-delivery.png' %}" style="max-width: 35px;">
+                            <h4>Free shipping</h4>
+                            <p>Fusce urna quam, euismod sit amet mollis quis, vestibulum quis velit. Vesti bulum mal
+                                esuada aliquet libero viverra cursus. </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="single-features-ads second mt-0">
+                            <img src="{% static 'img/icons/coin.png' %}" style="max-width: 35px;">
+                            <h4>100% Money back </h4>
+                            <p>Urna quam, euismod sit amet mollis quis, vestibulum quis velit. Vesti bulum mal esuada
+                                aliquet libero viverra cursus. </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="single-features-ads third mt-0">
+                            <img src="{% static 'img/icons/chat.png' %}" style="max-width: 35px;">
+                            <h4>Online support 24/7</h4>
+                            <p>Urna quam, euismod sit amet mollis quis, vestibulum quis velit. Vesti bulum mal esuada
+                                aliquet libero viverra cursus. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Features Box -->
+        <div class="features-box">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="single-box-item first-box">
+                                    <img src="{% static 'img/f-box-1.jpg' %}" alt="">
+                                    <div class="box-text">
+                                        <span class="trend-year">2024 Party</span>
+                                        <h2>Style</h2>
+                                        <span class="trend-alert">Trend Allert</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="single-box-item second-box">
+                                    <img src="{% static 'img/f-box-2.jpg' %}" alt="">
+                                    <div class="box-text">
+                                        <span class="trend-year">2024 Trend</span>
+                                        <h2>Jeanswear</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="single-box-item large-box">
+                            <img src="{% static 'img/f-box-3.jpg' %}" alt="">
+                            <div class="box-text">
+                                <span class="trend-year" style="color: white;">2024 Party</span>
+                                <h2>Collection</h2>
+                                <div class="trend-alert" style="color: white;">Trend Allert</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Features Section End -->
+
+    <!-- Latest Product Begin -->
+    <section class="latest-products spad">
+        <div class="container">
+            <div class="product-filter">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="section-title">
+                            <h2>Latest Products</h2>
+                        </div>
+
+
+                        {% comment %}- filter section -{% endcomment %}
+                        <ul class="product-controls">
+                            <form method="POST">
+                                {% csrf_token %}
+                                <li>
+                                    <input class="custom-filters"
+                                    name="all" type="submit" value="All">
+                                </li>
+                                <li>
+                                    <input class="custom-filters"
+                                    name="jeans" type="submit" value="Jeans">
+                                </li>
+                                <li>
+                                    <input class="custom-filters"
+                                    name="jacket" type="submit" value="Jacket">
+                                </li>
+                                <li>
+                                    <input class="custom-filters"
+                                    name="tshirt" type="submit" value="T-Shirt">
+                                </li>
+                            </form>
+                        {% comment %}- END filter section -{% endcomment %}
+
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row" id="product-list">
+                {% comment %}- latest products -{% endcomment %}
+                {% for product in products %}
+                <div class="col-lg-3 col-sm-6 mix all dresses bags">
+                    <div class="single-product-item">
+                        <figure>
+                            <a href="{% url 'product_details_page' product.id %}">
+                                <img src="{{product.image.url}}" style="height: 300px;">
+                            </a>
+                            {% for tag in product.tags.all %}
+                            <div class="p-status bg-warning">{{tag}}</div>
+                            {% endfor %}
+                        </figure>
+                        <div class="product-text">
+                            <h6>{{product.name}}</h6>
+                            <p>{{product.price}}$</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% comment %}- END latest products -{% endcomment %}
+
+
+        </div>
+    </section>
+    <!-- Latest Product End -->
+
+    <!-- Lookbok Section Begin -->
+    <section class="lookbok-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4 offset-lg-1">
+                    <div class="lookbok-left pt-0">
+                        <div class="section-title">
+                            <h2 span style="color:grey;">2024 <br /><span style="color: aqua;">#</span>TechHub</h2>
+                        </div>
+                        <p>Fusce urna quam, euismod sit amet mollis quis, vestibulum quis velit. Vestibulum malesuada
+                            aliquet libero viverra cursus. Aliquam erat volutpat. Morbi id dictum quam, ut commodo
+                            lorem. In at nisi nec arcu porttitor aliquet vitae at dui. Sed sollicitudin nulla non leo
+                            viverra scelerisque. Phasellus facilisis lobortis metus, sit amet viverra lectus finibus ac.
+                            Aenean non felis dapibus, placerat libero auctor, ornare ante. Morbi quis ex eleifend,
+                            sodales nulla vitae, scelerisque ante. Nunc id vulputate dui. Suspendisse consectetur rutrum
+                            metus nec scelerisque. s</p>
+
+                        {% comment %}- go shop page -{% endcomment %}
+                        <a href="{% url 'shop_page' %}" class="primary-btn look-btn">See More</a>
+                        {% comment %}- END go shop page -{% endcomment %}
+
+                    </div>
+                </div>
+                <div class="col-lg-5 offset-lg-1">
+                    <div class="lookbok-pic">
+                        <img src="{% static 'img/lookbok.jpg' %}" alt="">
+                        <div class="pic-text" style="color: grey;">fashion</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Lookbok Section End -->
+
+{% endblock content %}

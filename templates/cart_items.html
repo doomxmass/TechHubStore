@@ -1,0 +1,88 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<style>
+    .user-name{
+        color: rgb(100, 187, 168);
+        font-weight: bold;
+    }
+    .custom-bg{
+        background-color: rgb(140, 169, 182)
+    }
+    .custom-img{
+        border-radius: 25px;
+        border: 4px solid rgb(100, 187, 168);
+    }
+    .custom-item{
+        border-bottom: 1px solid grey;
+    }
+    .custom-card-details{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    @media (max-width:1000px) {
+        .custom-card-details{
+            flex-direction: column;
+            gap: 5px;
+        }
+    }
+</style>
+
+<div class="container-xl justify-content-center mt-5 ">
+
+    <div class="conatiner d-flex flex-column align-items-center justify-content-center">
+        <div class="container d-flex align-items-center justify-content-center">
+            <span class="text-secondary fw-bold " style="font-size: 14px;">
+                ADDED PRODUCTS 
+                <span class="fs-5 badge rounded-pill text-bg-success">{{cart_items_count}}</span>
+            </span>
+        </div>
+        <div class="container">
+            <h3>
+                <span class="user-name">{{user.username}}</span>'s
+                Cart
+            </h3>
+            <img src="{% static 'img/basket.png' %}">
+        </div>
+    </div>
+
+    {% for item in cart_items %}
+    <p class="d-flex gap-4 align-items-center justify-content-between mr-5 custom-item">
+        <button class="btn btn-secondary float-left" type="button"
+        style="height: 30px;font-size:12px;"
+        data-bs-toggle="collapse"
+        data-bs-target="#{{item.id}}"
+        aria-expanded="false">
+            Details
+        </button>
+        <span> <span class="text-black">Category : </span>{{item.products.category}}</span>
+        <span class="text-black">{{item.products.price}}$</span>
+        <span>{{item.products.name}}</span>
+        <img src="{{item.products.image.url}}" class="custom-img" height="50" width="50">
+    </p>
+
+    <div class="collapse" id="{{item.id}}">
+        <div class="card card-body custom-bg custom-card-details">
+            <h5>
+                Description : <span style="font-size:14px;color:green;">{{item.products.description}}</span>
+            </h5>
+            <h5>
+                Quantity : <span style="font-size:14px;color:green;">{{item.quantity}}</span>
+            </h5>
+            <h5>
+                Added On : <span style="font-size:14px;color:green;">{{item.added_on}}</span>
+            </h5>
+        </div>
+        <a class="btn btn-danger" href="#" style="height: 30px;font-size:12px;">
+            Delete From Cart
+        </a>
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock content %}

@@ -1,6 +1,6 @@
-<p align="center"><h1><strong>TechHub Store</strong></h1></p>
+<p align="center"><strong>TechHub Store</strong></p>
 
-# Tools :
+Tools :
 
 ![Static Badge](https://img.shields.io/badge/Python-%23107dac?style=flat)
 ![Static Badge](https://img.shields.io/badge/JavaScript-%23fffb05?style=flat)
